@@ -64,7 +64,7 @@ namespace PlayStore.Controllers
                 return NotFound("app not found");
             }
 
-            app.image_1 = image1;
+            app.Image_1 = image1;
 
             return Ok(app);
         }
@@ -80,7 +80,7 @@ namespace PlayStore.Controllers
                 return NotFound("app not found");
             }
 
-            app.image_2 = image2;
+            app.Image_2 = image2;
 
             return Ok(app);
         }
@@ -96,7 +96,7 @@ namespace PlayStore.Controllers
                 return NotFound("app not found");
             }
 
-            app.image_3 = image3;
+            app.Image_3 = image3;
 
             return Ok(app);
 
