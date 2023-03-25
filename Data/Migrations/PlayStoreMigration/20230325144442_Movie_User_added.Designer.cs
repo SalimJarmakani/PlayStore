@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlayStore.Data;
 
@@ -11,9 +12,10 @@ using PlayStore.Data;
 namespace PlayStore.Data.Migrations.PlayStoreMigration
 {
     [DbContext(typeof(PlayStoreDbContext))]
-    partial class PlayStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230325144442_Movie_User_added")]
+    partial class Movie_User_added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,10 +116,6 @@ namespace PlayStore.Data.Migrations.PlayStoreMigration
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
-
-                    b.Property<string>("type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

@@ -14,5 +14,8 @@ namespace PlayStore.Data
         public DbSet<Review> Review { get; set; }
 
         public DbSet<Reply> Reply { get; set; }
+        public DbSet<Movie> Movie { get; set; }
+
+        public DbSet<User> User { get; set; }
     }
 }

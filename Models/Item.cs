@@ -13,6 +13,9 @@ namespace PlayStore.Models
         public float AverageRating { get; set; }
         [Required]
         public string? Genre { get; set; }
+
+        [Required]
+        public string? type { get; set; }
         public string? Price { get; set; }
         public string? Description { get; set; }
         public string? AllReviews { get; set; }
