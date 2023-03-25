@@ -11,6 +11,7 @@ namespace PlayStore.Models
         public string Profile_pic { get; set; }
         public ICollection<Item> LastViewed { get; set; }
         public bool Recv_emails { get; set; }
+        public bool Admin { get; set; }
 
         public ICollection<Item> GetLatestTwentyFour()
         {

@@ -14,7 +14,9 @@ namespace PlayStore.Models
         [Required]
         public string? Genre { get; set; }
         public string? Price { get; set; }
-        public string? description { get; set; }
+        public string? Description { get; set; }
+        public string? AllReviews { get; set; }
+        public string? AdditionalInformation { get; set; }
 
         public ICollection<Review> Reviews { get; set; }
 
