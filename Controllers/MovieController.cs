@@ -23,8 +23,15 @@ namespace PlayStore.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Movie>> Get() => await _context.Movie.ToListAsync();
+        public async Task<IActionResult> GetMovies()
+        {
+            var movies = await _context.Movie
+                .Include(m => m.Cast)
+                .Include(m => m.Credits)
+                .ToListAsync();
 
+            return Ok(movies);
+        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Movie>> GetMovieById(int id)

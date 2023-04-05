@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlayStore.Data;
 
@@ -11,9 +12,10 @@ using PlayStore.Data;
 namespace PlayStore.Data.Migrations.PlayStoreMigration
 {
     [DbContext(typeof(PlayStoreDbContext))]
-    partial class PlayStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230405082807_ItemReviewRelationship")]
+    partial class ItemReviewRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,7 +144,7 @@ namespace PlayStore.Data.Migrations.PlayStoreMigration
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ReviewId")
+                    b.Property<int?>("ReviewId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -268,13 +270,9 @@ namespace PlayStore.Data.Migrations.PlayStoreMigration
 
             modelBuilder.Entity("PlayStore.Models.Reply", b =>
                 {
-                    b.HasOne("PlayStore.Models.Review", "Review")
+                    b.HasOne("PlayStore.Models.Review", null)
                         .WithMany("Replies")
-                        .HasForeignKey("ReviewId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Review");
+                        .HasForeignKey("ReviewId");
                 });
 
             modelBuilder.Entity("PlayStore.Models.Review", b =>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlayStore.Data;
 
@@ -11,9 +12,10 @@ using PlayStore.Data;
 namespace PlayStore.Data.Migrations.PlayStoreMigration
 {
     [DbContext(typeof(PlayStoreDbContext))]
-    partial class PlayStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230405081143_ReviewItem")]
+    partial class ReviewItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,7 +144,7 @@ namespace PlayStore.Data.Migrations.PlayStoreMigration
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ReviewId")
+                    b.Property<int?>("ReviewId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -172,7 +174,7 @@ namespace PlayStore.Data.Migrations.PlayStoreMigration
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnType("int");
 
                     b.Property<float>("Rating")
@@ -268,24 +270,16 @@ namespace PlayStore.Data.Migrations.PlayStoreMigration
 
             modelBuilder.Entity("PlayStore.Models.Reply", b =>
                 {
-                    b.HasOne("PlayStore.Models.Review", "Review")
+                    b.HasOne("PlayStore.Models.Review", null)
                         .WithMany("Replies")
-                        .HasForeignKey("ReviewId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Review");
+                        .HasForeignKey("ReviewId");
                 });
 
             modelBuilder.Entity("PlayStore.Models.Review", b =>
                 {
-                    b.HasOne("PlayStore.Models.Item", "Item")
+                    b.HasOne("PlayStore.Models.Item", null)
                         .WithMany("Reviews")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Item");
+                        .HasForeignKey("ItemId");
                 });
 
             modelBuilder.Entity("PlayStore.Models.Item", b =>
