@@ -16,6 +16,7 @@ namespace PlayStore.Controllers
         [HttpPost]
         public async Task<ActionResult<App>> PostApp(App app)
         {
+            app.Reviews= new List<Review>();
             _context.App.Add(app);
 
             await _context.SaveChangesAsync();
@@ -75,6 +76,8 @@ namespace PlayStore.Controllers
             }
 
             review.ItemId = id;
+
+            review.Replies=new List<Reply>();
 
             // Find the item that the review belongs to.
             var item = await _context.Item.FindAsync(id);

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PlayStore.Data;
 using PlayStore.Models;
+
 namespace PlayStore.Controllers
 {
     [Route("api/[controller]")]
@@ -28,6 +29,7 @@ namespace PlayStore.Controllers
             var movies = await _context.Movie
                 .Include(m => m.Cast)
                 .Include(m => m.Credits)
+                .Include(m => m.Reviews)
                 .ToListAsync();
 
             return Ok(movies);

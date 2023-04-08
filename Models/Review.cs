@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PlayStore.Models
 {
@@ -13,6 +14,8 @@ namespace PlayStore.Models
         public float Rating { get; set; }
         public DateTime Date { get; set; }
         public string? Text { get; set; }
+
+        [ForeignKey("ReviewId")]
         public ICollection<Reply>? Replies { get; set; }
 
         public Item Item = null!;

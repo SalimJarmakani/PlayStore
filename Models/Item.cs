@@ -20,8 +20,8 @@ namespace PlayStore.Models
         public string? Description { get; set; }
         public string? AllReviews { get; set; }
         public string? AdditionalInformation { get; set; }
-
-        public ICollection<Review> Reviews { get; set; }
+        [ForeignKey("ItemId")]
+        public ICollection<Review>? Reviews { get; set; }
 
 
         public float GetAverageRating()
