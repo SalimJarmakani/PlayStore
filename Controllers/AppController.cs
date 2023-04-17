@@ -184,6 +184,26 @@ namespace PlayStore.Controllers
 
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            var item = await _context.Item.FindAsync(id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            var relatedReviews = _context.Review.Where(r => r.ItemId == id);
+
+            _context.Review.RemoveRange(relatedReviews);
+            _context.Item.Remove(item);
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
 
 
     }
