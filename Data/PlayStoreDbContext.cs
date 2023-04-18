@@ -30,6 +30,10 @@ namespace PlayStore.Data
         public DbSet<Item> Item { get; set; }
         public DbSet<App> App { get; set; }
 
+        public DbSet<Actor> Actors { get; set; }
+
+        public DbSet<CrewMember> Credits { get; set; }
+
         public DbSet<Review> Review { get; set; }
 
         public DbSet<Reply> Reply { get; set; }

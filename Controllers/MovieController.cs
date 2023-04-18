@@ -16,6 +16,7 @@ namespace PlayStore.Controllers
         [HttpPost]
         public async Task<ActionResult<Movie>> PostMovie(Movie movie)
         {
+            movie.Reviews= new List<Review>();
             _context.Movie.Add(movie);
 
             await _context.SaveChangesAsync();
@@ -50,9 +51,26 @@ namespace PlayStore.Controllers
 
         }
 
+        [HttpDelete("movies/{id}")]
+        public async Task<IActionResult> DeleteMovie(int id)
+        {
+            var movie = await _context.Movie.Include(m => m.Cast).Include(m => m.Credits).FirstOrDefaultAsync(m => m.Id == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
 
+            _context.Actors.RemoveRange(movie.Cast);
+            _context.Credits.RemoveRange(movie.Credits);
+            _context.Movie.Remove(movie);
+            await _context.SaveChangesAsync();
 
-
+            return NoContent();
         }
+
+
+
+
+    }
     }
 
