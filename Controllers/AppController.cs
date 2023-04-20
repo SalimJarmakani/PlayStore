@@ -150,21 +150,25 @@ namespace PlayStore.Controllers
             return Ok(app);
         }
 
-        [HttpPatch("images/edit/image2/{id}")]
-        public async Task<ActionResult<App>> updateImage2(string image2, int id)
+        [HttpPatch("images/edit/{id}")]
+        public async Task<ActionResult<App>> updateMainImage(string mainImage, int id)
         {
 
-            var app = await _context.App.FindAsync(id);
+            var item = await _context.Item.FindAsync(id);
 
-            if (app == null)
+            if (item == null)
             {
                 return NotFound("app not found");
             }
 
-            app.Image_2 = image2;
+            item.MainImage = mainImage;
+            await _context.SaveChangesAsync();
 
-            return Ok(app);
+
+            return Ok(item);
         }
+
+
 
         [HttpPatch("images/edit/image3/{id}")]
         public async Task<ActionResult<App>> updateImage3(string image3, int id)

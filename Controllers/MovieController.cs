@@ -68,6 +68,24 @@ namespace PlayStore.Controllers
             return NoContent();
         }
 
+        [HttpPatch("trailer/edit/{id}")]
+        public async Task<ActionResult<App>> updateTrailer(string trailer, int id)
+        {
+
+            var movie = await _context.Movie.FindAsync(id);
+
+            if (movie == null)
+            {
+                return NotFound("app not found");
+            }
+
+            movie.TrailerLink = trailer;
+            await _context.SaveChangesAsync();
+
+
+            return Ok(movie);
+        }
+
 
 
 
